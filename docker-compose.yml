@@ -1,0 +1,18 @@
+services:
+  build:
+    image: maven:3.9-eclipse-temurin-8
+    working_dir: /app
+    volumes:
+      - .:/app
+      - maven-repo:/root/.m2/repository
+    command: mvn -B clean install
+  test:
+    image: maven:3.9-eclipse-temurin-8
+    working_dir: /app
+    volumes:
+      - .:/app
+      - maven-repo:/root/.m2/repository
+    command: mvn -B test
+
+volumes:
+  maven-repo:
